@@ -8,9 +8,10 @@ route
   .post('/signup', userController.registerUser)
   .post('/signin', userController.loginUser)
   .put('/verify', userController.verifyUser)
-  
-  .get('/', auth.verifyAccess, userController.getUser)
   .get('/profile', auth.verifyAccess, userController.getProfile)
+  .get('/', auth.verifyAccess, userController.getUser)
+
+  // Not edited
   .get('/:idUser',  userController.getUserById)
   .post('/', auth.verifyAccess, verifyrole.verify(), userController.insertUser)
   

@@ -93,7 +93,6 @@ exports.getUserById = (req, res) => {
 }
 
 exports.getProfile = (req, res) => {
-  // const idUser = req.params.idUser
   // email disini req.email dari decode token
   const email = req.email
   userModels.getUserByEmail(email)

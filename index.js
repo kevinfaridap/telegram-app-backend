@@ -3,8 +3,61 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const port = process.env.PORT
+const PORT = process.env.PORT
 const cors = require('cors')
 const morgan = require('morgan')
+const socket = require('socket.io')
+const http = require('http')
+const moment = require('moment')
+moment.locale('id');
+const { v4: uuidv4 } = require('uuid');
+const messageModels = require('./src/models/messages')
+
+// Awal socket.io
+const httpServer = http.createServer(app)
+const io = socket(httpServer, {
+  cors: {
+    origin: '*',
+  }
+})
+ 
+
+// / socket io
+io.on("connection", (socket) => {
+  console.log("client terhubung dengan id " + socket.id);
+
+  socket.on("initialUser", (idUser) => {
+    socket.join(`user:${idUser}`)
+    console.log(`user:${idUser}`);
+  })
+
+  socket.on('sendMessage', async (data, callback) => {
+    const date = new Date()
+    const timeNow = moment(date).format('LT')
+    const dateNow = moment().format('LL')
+    const dataMessage = { ...data, createdAt: timeNow, date: dateNow }
+    io.to(`user:${data.idReceiver}`).emit('receiverMessage', dataMessage)
+    console.log('isi data', data);
+    callback(dataMessage)
+    console.log(dataMessage, 'isi data message');
+    dataMessage.id = uuidv4()
+
+    await messageModels.createMessages(dataMessage);
+  })
+
+  socket.on("disconnect", reason => {
+    console.log("client disconnect " + reason);
+  })
+
+})
+
+
+
+
+
+
+
+// === Akhir socket.io
 
 const route = require('./src/routers/index')
 
@@ -35,9 +88,14 @@ app.use((err, req, res, next) => {
   })
 })
 
-app.listen(port, () => {
-  console.log('Server berjalan di port ' + port)
+httpServer.listen(PORT, ()=>{
+  console.log('server is running on port ' + PORT);
 })
+
+
+// app.listen(port, () => {
+//   console.log('Server berjalan di port ' + port)
+// })
 
 
 
