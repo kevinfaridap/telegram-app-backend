@@ -37,7 +37,7 @@ io.on("connection", (socket) => {
     const dateNow = moment().format('LL')
     const dataMessage = { ...data, createdAt: timeNow, date: dateNow }
     io.to(`user:${data.idReceiver}`).emit('receiverMessage', dataMessage)
-    console.log('isi data', data);
+    // console.log('isi data', data);
     callback(dataMessage)
     console.log(dataMessage, 'isi data message');
     dataMessage.id = uuidv4()
@@ -70,7 +70,7 @@ app.use(morgan('dev'))
 
 app.use('/v1', route)
 
-app.use('/image', express.static('./images'))
+app.use('/image', express.static('./uploads'))
 
 app.use('*', (req, res, next) => {
   const error = new Error('ERROR.........')

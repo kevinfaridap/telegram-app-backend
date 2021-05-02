@@ -3,6 +3,7 @@ const route = express.Router()
 const userController = require('../controllers/users')
 const verifyrole = require('../middlewares/verifyrole')
 const auth = require('../middlewares/auth')
+const { uploadMulter } = require('../middlewares/multer')
 
 route
   .post('/signup', userController.registerUser)
@@ -10,9 +11,11 @@ route
   .put('/verify', userController.verifyUser)
   .get('/profile', auth.verifyAccess, userController.getProfile)
   .get('/', auth.verifyAccess, userController.getUser)
+  .get('/:idUser',  userController.getUserById)
+  .put('/:idUser', uploadMulter.single('image'), userController.updateProfile)
+
 
   // Not edited
-  .get('/:idUser',  userController.getUserById)
   .post('/', auth.verifyAccess, verifyrole.verify(), userController.insertUser)
   
   .post('/tryemail', userController.email)

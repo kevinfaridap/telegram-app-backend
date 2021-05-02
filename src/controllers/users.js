@@ -241,6 +241,48 @@ exports.verifyUser = async (req, res) => {
 }
 
 
+exports.updateProfile = (req, res) => {
+  if (!req.file) {
+    const err = new Error('You must upload the image!')
+    err.errorStatus = 200
+    throw err
+  }
+
+  const idUser = req.params.idUser
+  const { firstName, lastName, username, phoneNumber, image, bio } = req.body
+  const data = {
+    firstName,
+    lastName: 'yourlastname',
+    username,
+    phoneNumber,
+    image: `http://localhost:8081/image/${req.file.filename}`,
+    bio,
+  }
+  // console.log(data);
+  userModels.updateProfiles(idUser, data)
+    .then((result) => {
+      if (result.changedRows !== 0) {
+        res.json({
+          message: 'Success update data',
+          status: 200,
+          data: data
+        })
+      } else {
+        res.json({
+          err: 'No Id in database',
+          status: 500
+        })
+      }
+    })
+    .catch((err) => {
+      res.json({
+        err: 'No data in databse' + '   ' + err,
+        status: 500
+      })
+    })
+}
+
+
 
 exports.updateUser = (req, res) => {
   const idUser = req.params.idUser

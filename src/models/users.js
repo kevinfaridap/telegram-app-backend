@@ -130,6 +130,19 @@ const user = {
   },
 
 
+  updateProfiles: (idUser, data) => {
+    return new Promise((resolve, reject) => {
+      connection.query('UPDATE users SET ? WHERE id=?', [data, idUser], (err, result) => {
+        if (!err) {
+          resolve(result)
+        } else {
+          reject(err)
+        }
+      })
+    })
+  },
+
+
   updatePins: (newpin, idUser) => {
     return new Promise((resolve, reject) => {
       connection.query(`UPDATE users SET pin=${newpin} WHERE id = ${idUser}`, (err, result) => {
