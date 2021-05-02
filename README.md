@@ -44,7 +44,7 @@ DB = yourdatabase
 ```
 
 ># Visit Project
-* Frontend :
+[Backend](https://github.com/kevinfaridap/zwallet-backend)
 * Demo App :
 
 
