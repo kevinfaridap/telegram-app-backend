@@ -178,7 +178,7 @@ exports.loginUser = async (req, res) => {
     // Jika mau pake verify email
     const isVerify = user.active
     if(isVerify == false){
-      return helpers.response(res, null, 200, { message: 'Verify Your Email First' })
+      return helpers.response(res, null, 200, { message: 'Verify Your Email To Signin' })
     } 
     const isValid = await bcrypt.compare(password, user.password)
     if (!isValid) {

@@ -12,7 +12,8 @@ router
 //   .delete('/:id', messageController.deletemessage)
 
     // .get("/")
+    .get("/:iduser/:idreceiver", messageController.getMessageHistory)
     .post("/sendmessage", messageController.sendMessage)
-    .get("/:id", messageController.getMessageById)
+    // .get("/:id", messageController.getMessageById)
     // .get("/receiver/:idreceiver", messageController.getReceiver)
 module.exports = router

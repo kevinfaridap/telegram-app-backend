@@ -53,8 +53,28 @@ exports.getMessageById = (req, res) => {
           })
         }
       })
-  }
+  };
 
 
+  exports.getMessageHistory = (req, res) => {
+    // const {idUser, idReceiver} = req.body
+    const idUser = req.params.iduser
+    const idReceiver = req.params.idreceiver
 
-
+    messageModels.getMessagesHistory(idUser, idReceiver)
+      .then((result) => {
+        if (result.length > 0) {
+          res.json({
+            message: `Succes get data message idUser: ${idUser} and Receiver : ${idReceiver}`,
+            status: 200,
+            data: result
+          })
+        } else {
+          res.json({
+            message: 'No data !',
+            data: null,
+            status: 500
+          })
+        }
+      })
+  };
