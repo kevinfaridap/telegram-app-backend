@@ -15,9 +15,9 @@ const user = {
   },
 
 
-  getUsers: (firstname, offset, limit, by, order) => {
+  getUsers: (firstname='', offset, limit, by, order) => {
     return new Promise((resolve, reject) => {
-      connection.query(`SELECT * FROM users WHERE firstName LIKE '%${firstname}%' ORDER BY ${by} ${order} LIMIT ${limit} OFFSET ${offset}`, (err, result) => {
+      connection.query(`SELECT * FROM users ORDER BY ${by} ${order} LIMIT ${limit} OFFSET ${offset}`, (err, result) => {
         if (!err) {
           // console.log(result);
           resolve(result)
