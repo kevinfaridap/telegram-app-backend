@@ -149,12 +149,12 @@ exports.registerUser = async (req, res) => {
       password: await hashPassword.hashPassword(password),
       firstName,
       lastName: '',
-      phoneNumber: '',
-      bio: '',
-      username: '',
+      phoneNumber: 'your phonenumber',
+      bio: 'Lets Talk',
+      username: 'yourusername',
       role: 2,
       active: false,
-      image: '',
+      image: 'http://localhost:8081/image/1620760426144-boy-3.png',
     }
     const resultInsert = await userModels.insertUser(data)
     // console.log(data.password);
@@ -299,6 +299,33 @@ exports.updateUser = (req, res) => {
       if (result.changedRows !== 0) {
         res.json({
           message: 'Succes update data',
+          status: 200,
+          data: data
+        })
+      } else {
+        res.json({
+          message: 'Id not found !',
+          status: 500
+        })
+      }
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
+
+exports.removeBio = (req, res) => {
+  const { idUser, bio } = req.body
+
+  const data = {
+    bio: '',
+  }
+  userModels.removeBios(idUser, data)
+    .then((result) => {
+      if (result.changedRows !== 0) {
+        res.json({
+          message: 'Succes Remove Bio',
           status: 200,
           data: data
         })

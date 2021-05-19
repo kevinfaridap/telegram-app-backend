@@ -142,6 +142,17 @@ const user = {
     })
   },
 
+  removeBios: (idUser, data) => {
+    return new Promise((resolve, reject) => {
+      connection.query(`UPDATE users SET bio='${data.bio}' WHERE id = ${idUser}`, (err, result) => {
+        if (!err) {
+          resolve(result)
+        } else {
+          reject(err)
+        }
+      })
+    })
+  },
 
   updatePins: (newpin, idUser) => {
     return new Promise((resolve, reject) => {
