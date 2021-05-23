@@ -1,6 +1,6 @@
 <h3 align="center">Telegram App Api</h3>
   <p align="center">
-   <img src="https://miro.medium.com/max/365/1*d2zLEjERsrs1Rzk_95QU9A.png" style="margin-left: auto; margin-right: auto;" />
+   <img src="https://user-images.githubusercontent.com/74039235/119268981-91241080-bc1f-11eb-8c7d-f5f0b8135566.png" style="margin-left: auto; margin-right: auto;" />
   </p>
   <p align="center">
    This Api is for Telegram App.
