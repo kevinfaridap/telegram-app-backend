@@ -64,6 +64,6 @@ Please make sure to update tests as appropriate.
 
 ># Visit Project
 - :white_check_mark: [Frontend](https://github.com/kevinfaridap/telegram-app-frontend)
-- :rocket: [Telegram Apps](https://mytelegram-app.netlify.app/)
+- :rocket: [Telegram Apps [Demo Aplikasi]](https://mytelegram-app.netlify.app/)
 
 
