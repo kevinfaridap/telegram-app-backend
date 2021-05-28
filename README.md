@@ -3,7 +3,7 @@
    <img src="https://user-images.githubusercontent.com/74039235/119268981-91241080-bc1f-11eb-8c7d-f5f0b8135566.png" style="margin-left: auto; margin-right: auto;" />
   </p>
   <p align="center">
-   This Api is for Telegram App.
+   This Api is for Telegram App. These are documentation for backend telegram apps that explain how to install and run the backend.
   </p>
 
 
@@ -64,6 +64,6 @@ Please make sure to update tests as appropriate.
 
 ># Visit Project
 - :white_check_mark: [Frontend](https://github.com/kevinfaridap/telegram-app-frontend)
-- :rocket: [Telegram Apps [Demo Aplikasi]](https://mytelegram-app.netlify.app/)
+- :rocket: [Telegram Apps [Demo Application]](https://mytelegram-app.netlify.app/)
 
 
