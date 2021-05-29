@@ -10,7 +10,7 @@ route
   .post('/signin', userController.loginUser)
   .put('/verify', userController.verifyUser)
   .get('/profile', auth.verifyAccess, userController.getProfile)
-  .get('/', auth.verifyAccess, userController.getUser)
+  .get('/getalluser/:iduser', auth.verifyAccess, userController.getUser)
   .get('/:idUser',  userController.getUserById)
   .put('/removebio', userController.removeBio)
   .put('/:idUser', uploadMulter.single('image'), userController.updateProfile)

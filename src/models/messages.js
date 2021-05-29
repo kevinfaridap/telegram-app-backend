@@ -60,7 +60,7 @@ exports.getMessagesById = (id) => {
   exports.getMessagesHistory = (idUser , idReceiver ) => {
     return new Promise((resolve, reject) => {
      
-      connection.query(`SELECT * FROM message WHERE idUser=${idUser} && idReceiver=${idReceiver} || idUser=${idReceiver} && idReceiver=${idUser} ORDER BY dateTime ASC LIMIT 0, 50`, [idUser , idReceiver] ,(err, result) => {
+      connection.query(`SELECT * FROM message WHERE idUser=${idUser} && idReceiver=${idReceiver} || idUser=${idReceiver} && idReceiver=${idUser} ORDER BY dateTime ASC `, [idUser , idReceiver] ,(err, result) => {
         if (!err) {
           resolve(result)
         } else {

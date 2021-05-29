@@ -3,6 +3,7 @@ const smtpTransport = require("nodemailer-smtp-transport");
 const host = process.env.HOST;
 const port = process.env.PORT_FRONTEND;
 const link = `http://${host}:${port}`;
+const linkFrontend = `${process.env.LINK_FRONTEND}`
 const email = process.env.EMAIL_USER;
 const password = process.env.EMAIL_PASS;
 
@@ -24,8 +25,9 @@ const send = (destination, type) => {
           from: email,
           to: destination,
           subject: "Account Verification",
-          html: `Click this link to verify your account : <a href="${link}/auth/email=${destination}">Activate</a>`,
+          html: `Click this link to verify your account : <a href="${linkFrontend}/auth/email=${destination}">Activate</a>`,
         });
+        // <a href="${link}/auth/email=${destination}"></a>
         resolve(info);
       } else if (type === "forgot") {
         const info = await transporter.sendMail({

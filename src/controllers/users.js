@@ -15,12 +15,13 @@ exports.email = async (req, res)=>{
 
 
 exports.getUser = async (req, res) => {
+  const idUser = parseInt(req.params.iduser) || 0
   const by = req.query.by || 'id'
   const order = req.query.order || 'ASC'
-  const searchUser = req.query.firstname || ''
-  const limit = parseInt(req.query.limit) || 5
+  const searchname = req.query.firstname || ''
+  const limit = parseInt(req.query.limit) || 30
   const page = parseInt(req.query.page) || 1
-  
+
   const countUsers = await userModels.countUsers()
   // console.log(req.query.limit);
   // console.log(req.query.firstName);
@@ -29,7 +30,7 @@ exports.getUser = async (req, res) => {
   const offset = (page - 1) * limit
 
   
-  userModels.getUsers(searchUser, offset, limit, by, order)
+  userModels.getUsers(idUser, searchname, offset, limit, by, order)
 
     .then((result) => {
       if (result.length > 0) {
@@ -142,7 +143,7 @@ exports.registerUser = async (req, res) => {
     const result = await userModels.findUser(email)
 
     if (result.length !== 0) {
-      return helpers.response(res, null, 200, { email: 'Email already exists' })
+      return helpers.response(res, null, 200, { message: 'Email already exists !' })
     }
     const data = {
       email,
@@ -154,7 +155,7 @@ exports.registerUser = async (req, res) => {
       username: 'yourusername',
       role: 2,
       active: false,
-      image: 'http://localhost:8081/image/1620760426144-boy-3.png',
+      image: `${process.env.API_BACKEND}/image/1621838245645-default-image.png`,
     }
     const resultInsert = await userModels.insertUser(data)
     // console.log(data.password);
@@ -171,7 +172,7 @@ exports.loginUser = async (req, res) => {
     const { email, password } = req.body
     const result = await userModels.findUser(email)
     if (result.length === 0) {
-      return helpers.response(res, null, 200, { message: 'Email or Password is not registered' })
+      return helpers.response(res, null, 200, { message: 'Email and Password are not registered' })
     }
     const user = result[0];
     
@@ -255,7 +256,7 @@ exports.updateProfile = (req, res) => {
     lastName: 'yourlastname',
     username,
     phoneNumber,
-    image: `http://localhost:8081/image/${req.file.filename}`,
+    image: `${process.env.API_BACKEND}/image/${req.file.filename}`,
     bio,
   }
   // console.log(data);
