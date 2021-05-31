@@ -17,6 +17,35 @@
 * [Postman](https://www.getpostman.com/) for testing
 * [Database](database-example.sql)
 
+
+#### User Endpoint
+
+|  METHOD  |             API              |                    REMARKS                    |
+| :------: | :-------------------------:  | :-------------------------------------------: |
+|  `POST`  |       /users/register        |      Register User and Activation Email       |
+|  `POST`  |        /users/login          |        Sign in with a verified account        |
+|  `PUT`   |        /users/verify         |                  Verify account               |
+|  `GET`   |        /users/profile        |          Get User Profile by Decoded Email    |
+|  `GET`   |         /users/:id           |                 Get User by Id                |
+|  `GET`   |    /users/getalluser/:id     |       Get All User Except Loginned User       |
+|  `PUT`   |         /removebio           |           Remove Bio/Status in Profile        |
+|  `PUT`   |         /users/:id           |                 Edit Data By id               |
+|  `PUT`   |       /users/updatepin       |             Update User's Pin By id           |
+|  `PUT`   |    /users/changepassword     |              Change User's Password           |
+| `DELETE` |         /users/:id           |                Delete Data By id              |
+
+
+#### Message Endpoint
+
+|  METHOD  |             API              |                    REMARKS                    |
+| :------: | :-------------------------:  | :-------------------------------------------: |
+|  `GET`   | /message/:iduser/:idreceiver |  Get Message History by idSender & idReceiver |
+|  `POST`  |    /message/sendmessage      |            Send Message to Database           |
+
+
+
+
+
 ## Installation
 
 Clone this repository and then use the package manager npm to install dependencies.
